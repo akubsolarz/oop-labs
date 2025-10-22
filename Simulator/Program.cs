@@ -6,20 +6,41 @@
         {
             Console.WriteLine("Starting Simulator!\n");
 
-            Creature c = new Creature("shrek", 7);
 
+            Creature c = new() { Name = "   Shrek    ", Level = 20 };
             c.SayHi();
-            
+            c.Upgrade();
             Console.WriteLine(c.Info);
-            Creature.Slogan();
 
-            Animals a = new() { Size = 3, Description = "Dogs" };
-            Console.WriteLine($"{a.Description}, {a.Size}");  // Rats, 3
+            c = new("  ", -5);
+            c.SayHi();
+            c.Upgrade();
+            Console.WriteLine(c.Info);
 
+            c = new("  donkey ") { Level = 7 };
+            c.SayHi();
+            c.Upgrade();
+            Console.WriteLine(c.Info);
+
+            c = new("Puss in Boots – a clever and brave cat.");
+            c.SayHi();
+            c.Upgrade();
+            Console.WriteLine(c.Info);
+
+            c = new("a                            troll name", 5);
+            c.SayHi();
+            c.Upgrade();
+            Console.WriteLine(c.Info);
+
+            var a = new Animals() { Description = "   Cats " };
             Console.WriteLine(a.Info);
 
-            Console.WriteLine("Koniec");
+            a = new() { Description = "Mice           are great", Size = 40 };
+            Console.WriteLine(a.Info);
 
         }
+
+        
+
     }
 }
