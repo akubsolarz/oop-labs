@@ -34,6 +34,30 @@
             if (_level < 10)
                 _level++;
         }
+
+        public void Go(Direction direction)
+        {
+            String dir = direction.ToString().ToLower();
+            Console.WriteLine($"{Name} goes {dir}.");
+        }
+
+        public void Go(Direction[] directions)
+        {
+            if(directions == null || directions.Length == 0)
+            {
+                Console.WriteLine($"{Name} Stands still.");
+                return;
+            }
+
+            foreach (var d in directions)
+                Go(d);
+        }
+
+        public void Go(string input)
+        {
+            Direction[] directions = DirectionParser.Parse(input);
+            Go(directions);
+        }
         private static string StandardImie(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
