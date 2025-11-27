@@ -1,0 +1,38 @@
+﻿namespace Simulator
+{
+
+    public class Orc : Creature
+    {
+        public int _huntcount = 0;
+        public int _rage;
+        public int Rage
+        {
+            get => _rage;
+            set => _rage = Math.Clamp(value, 0, 10);
+        }
+        public void Hunt()
+        {
+            _huntcount++;
+            Console.WriteLine($"{Name} is hunting.");
+            if (_huntcount % 2 == 0)
+            {
+                Rage++;
+            }
+        }
+        public override int Power => 8 * Level + 2 * Rage;
+
+        public Orc(string name, int level = 1, int rage = 1) : base(name, level)
+        {
+            Rage = rage;
+        }
+        public Orc() { }
+
+        public override void SayHi() => Console.WriteLine($"Hi, I'm {Name}, my level is {Level},  my rage is {Rage}");
+
+        public override string ToString()
+        {
+            return $"Hi, I'm {Name}, my level is {Level}, my rage is {Rage}";
+        }
+
+    }
+}

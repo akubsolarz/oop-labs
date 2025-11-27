@@ -1,11 +1,11 @@
 ﻿namespace Simulator
 {
-    public class Creature
+    public abstract class Creature
     {
         private string _name = "Unknown";
         private int _level = 1;
-        public string Name 
-        { 
+        public string Name
+        {
             get => _name;
             set => _name = StandardImie(value);
         }
@@ -13,11 +13,11 @@
         {
             get => _level;
             set => _level = StandardLevel(value);
-           
-        }
 
-        public Creature() { }
-        
+        }
+        public abstract int Power { get; }
+
+
         public Creature(string name)
         {
             Name = name;
@@ -28,6 +28,8 @@
             Name = name;
             Level = level;
         }
+
+        public Creature() { }
 
         public void Upgrade()
         {
@@ -43,7 +45,7 @@
 
         public void Go(Direction[] directions)
         {
-            if(directions == null || directions.Length == 0)
+            if (directions == null || directions.Length == 0)
             {
                 Console.WriteLine($"{Name} Stands still.");
                 return;
@@ -62,13 +64,13 @@
         {
             if (string.IsNullOrWhiteSpace(name))
                 return "Unknown";
-               
-            name=name.Trim();
 
-            if(name.Length>25)
+            name = name.Trim();
+
+            if (name.Length > 25)
                 name = name.Substring(0, 25).TrimEnd();
 
-            while(name.Length < 3)
+            while (name.Length < 3)
                 name += "#";
 
             if (char.IsLower(name[0]))
@@ -84,7 +86,7 @@
             return level;
         }
 
-        public void SayHi() => Console.WriteLine($"Hi, I'm {Name}, my level is {Level}.");
+        public abstract void SayHi();
 
         public static void Slogan() => Console.WriteLine("creatures are great !!!");
 
@@ -93,3 +95,4 @@
 
     }
 }
+
