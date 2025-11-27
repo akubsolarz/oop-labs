@@ -14,13 +14,13 @@
             if (value == null)
                 return new string(placeholder, min);
 
-            value = value.Trim();     
+            value = value.Trim();
 
-            if(value.Length >  max)
-                return value.Substring(0, max).TrimEnd();
+            if (value.Length > max)
+                value = value.Substring(0, max).TrimEnd();
 
             if (value.Length < min)
-                return value.PadRight(min, placeholder);
+                value = value.PadRight(min, placeholder);
 
             if (char.IsLower(value[0]))
                 value = char.ToUpper(value[0]) + value.Substring(1);

@@ -61,9 +61,13 @@
         }
         public abstract void SayHi();
 
+        public override string ToString()
+        {
+            return $"{this.GetType().Name.ToUpper()}: {Info}";
+        }
         public static void Slogan() => Console.WriteLine("creatures are great !!!");
 
-        public string Info => $"{Name} [{Level}]";
+        public abstract string Info {  get; }
 
 
     }

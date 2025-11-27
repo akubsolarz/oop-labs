@@ -10,6 +10,11 @@
         }
         public uint Size { get; set; } = 3;
 
-        public string Info => $"{Description}<{Size}>";
+        public virtual string Info => $"{Description} <{Size}>";
+
+        public override string ToString()
+        {
+            return $"{this.GetType().Name.ToUpper()}: {Info}";
+        }
     }
 }

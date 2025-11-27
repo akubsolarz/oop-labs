@@ -29,10 +29,10 @@
 
         public override void SayHi() => Console.WriteLine($"Hi, I'm {Name}, my level is {Level},  my rage is {Rage}");
 
-        public override string ToString()
-        {
-            return $"Hi, I'm {Name}, my level is {Level}, my rage is {Rage}";
-        }
-
+        //public override string ToString()
+        //{
+        //    return $"Hi, I'm {Name}, my level is {Level}, my rage is {Rage}";
+        //}
+        public override string Info => $"{Name} [{Level}][{Rage}]";
     }
 }
