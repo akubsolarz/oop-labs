@@ -7,12 +7,12 @@
         public string Name
         {
             get => _name;
-            set => _name = StandardImie(value);
+            set => _name = Validator.Shortener(value, 3, 25, '#');
         }
         public int Level
         {
             get => _level;
-            set => _level = StandardLevel(value);
+            set => _level = Validator.Limiter(value, 1, 10);
 
         }
         public abstract int Power { get; }
@@ -33,8 +33,7 @@
 
         public void Upgrade()
         {
-            if (_level < 10)
-                _level++;
+            Level++;
         }
 
         public void Go(Direction direction)
@@ -60,32 +59,6 @@
             Direction[] directions = DirectionParser.Parse(input);
             Go(directions);
         }
-        private static string StandardImie(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-                return "Unknown";
-
-            name = name.Trim();
-
-            if (name.Length > 25)
-                name = name.Substring(0, 25).TrimEnd();
-
-            while (name.Length < 3)
-                name += "#";
-
-            if (char.IsLower(name[0]))
-                name = char.ToUpper(name[0]) + name.Substring(1);
-
-            return name;
-        }
-
-        private static int StandardLevel(int level)
-        {
-            if (level < 1) return 1;
-            if (level > 10) return 10;
-            return level;
-        }
-
         public abstract void SayHi();
 
         public static void Slogan() => Console.WriteLine("creatures are great !!!");
