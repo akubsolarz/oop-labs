@@ -8,7 +8,7 @@
         public int Rage
         {
             get => _rage;
-            set => _rage = Math.Clamp(value, 0, 10);
+            set => _rage = Validator.Limiter(value, 0, 10);
         }
         public void Hunt()
         {
