@@ -7,7 +7,7 @@
         public int Agility
         {
             get => _agility;
-            private set => _agility = Math.Clamp(value, 0, 10);
+            private set => _agility = Validator.Limiter(value, 0, 10);
         }
         public void Sing()
         {
