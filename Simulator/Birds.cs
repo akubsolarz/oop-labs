@@ -1,28 +1,25 @@
-﻿using System.Formats.Asn1;
+﻿namespace Simulator;
 
-namespace Simulator
+public class Birds : Animals
 {
-    internal class Birds : Animals
+    public bool CanFly { get; set; } = true;
+
+    public Birds() { }
+
+    public Birds(string description, uint size, bool canFly = true)
     {
-        public bool CanFly { get; set; } = true;
+        Description = description;
+        Size = size;
+        CanFly = canFly;
+    }
 
-        public Birds() { }
-
-        public Birds(string description, uint size, bool canFly = true)
+    public override string Info
+    {
+        get 
         {
-            Description = description;
-            Size = size;
-            CanFly = canFly;
+            string fly = CanFly ? "fly+" : "fly-";
+            return $"{Description} ({fly}) <{Size}>";
         }
 
-        public override string Info
-        {
-            get 
-            {
-                string fly = CanFly ? "fly+" : "fly-";
-                return $"{Description} ({fly}) <{Size}>";
-            }
-
-        }
     }
 }

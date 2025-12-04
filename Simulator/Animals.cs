@@ -1,20 +1,19 @@
-﻿namespace Simulator
+﻿namespace Simulator;
+
+public class Animals
 {
-    public class Animals
+    private string _description = "Unknown";
+    public string Description
     {
-        private string _description = "Unknown";
-        public string Description
-        {
-            get => _description; 
-            set => _description = Validator.Shortener(value, 3, 15, '#'); 
-        }
-        public uint Size { get; set; } = 3;
+        get => _description; 
+        set => _description = Validator.Shortener(value, 3, 15, '#'); 
+    }
+    public uint Size { get; set; } = 3;
 
-        public virtual string Info => $"{Description} <{Size}>";
+    public virtual string Info => $"{Description} <{Size}>";
 
-        public override string ToString()
-        {
-            return $"{this.GetType().Name.ToUpper()}: {Info}";
-        }
+    public override string ToString()
+    {
+        return $"{this.GetType().Name.ToUpper()}: {Info}";
     }
 }
