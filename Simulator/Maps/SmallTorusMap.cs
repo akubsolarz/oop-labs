@@ -1,25 +1,24 @@
-﻿namespace Simulator.Maps
+﻿using System.Drawing;
+
+namespace Simulator.Maps
 {
     public class SmallTorusMap : Map
     {
         /// <summary>
         /// Rozmiar mapy torusowej (5–20).
         /// </summary>
-        public int Size { get; }
 
-        public SmallTorusMap(int size)
+
+        public SmallTorusMap(int sizeX, int sizeY) : base(sizeX, sizeY)
         {
-            if (size < 5 || size > 20)
-                throw new ArgumentOutOfRangeException(nameof(size),
-                    "Rozmiar musi być w przedziale 5-20.");
+            if (sizeX > 20)
+                throw new ArgumentOutOfRangeException(nameof(sizeX), "Rozmiar  nie może być większy od 20.");
+            if (sizeY > 20)
+                throw new ArgumentOutOfRangeException(nameof(sizeY), "Rozmiar  nie może być większy od 20.");
 
-            Size = size;
         }
 
-        
-        public override bool Exist(Point p) => p.X >= 0 && p.X < Size && p.Y >= 0 && p.Y < Size;
-                    
-     
+
         public override Point Next(Point p, Direction d)
         {
             var next = p.Next(d);
@@ -41,8 +40,8 @@
         private Point Wrap(Point p)
         {
 
-            int x = (p.X % Size + Size) % Size;
-            int y = (p.Y % Size + Size) % Size;
+            int x = (p.X % SizeX + SizeX) % SizeX;
+            int y = (p.Y % SizeY + SizeY) % SizeY;
 
             return new Point(x, y);
 

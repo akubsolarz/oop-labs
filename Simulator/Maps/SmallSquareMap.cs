@@ -8,23 +8,14 @@ public class SmallSquareMap : Map
     /// </summary>
     public int Size { get; }
 
-    private readonly Rectangle ractan;
-
-
-    public SmallSquareMap(int size)
+    public SmallSquareMap(int size) : base(size, size)
     {
 
-        if (size < 5 || size > 20)
-            throw new ArgumentOutOfRangeException(nameof(size), "Rozmiar  musi być w przedziale 5-20.");
+        if (size > 20)
+            throw new ArgumentOutOfRangeException(nameof(size), "Rozmiar  nie może być większy od 20.");
         Size = size;
-        ractan = new Rectangle(0, 0, Size - 1, Size - 1);
+
     }
-
-    /// <summary>
-    /// Sprawdza, czy punkt leży na  mapie.
-    /// </summary>
-    public override bool Exist(Point p) => ractan.Contains(p);
-
     /// <summary>
     /// Zwraca kolejny punkt w kierunku d lub zwraca obecny punkt.
     /// </summary>

@@ -1,7 +1,13 @@
-﻿namespace Simulator;
+﻿using Simulator.Maps;
+
+namespace Simulator;
 
 public abstract class Creature
 {
+    private Map? _map;
+
+    private Point _point;
+
     private string _name = "Unknown";
     private int _level = 1;
     public string Name
@@ -13,6 +19,21 @@ public abstract class Creature
     {
         get => _level;
         set => _level = Validator.Limiter(value, 1, 10);
+
+    }
+
+    public Point Position => _point;
+    public void InitMapAndPosition(Map map, Point startingPosition)
+    {
+        if (map == null)
+            throw new ArgumentNullException(nameof(map));
+
+        if (!map.Exist(startingPosition))
+            throw new ArgumentOutOfRangeException(nameof(startingPosition), "point out of map");
+
+        _map = map;
+        _point = startingPosition;
+        map.Add(this, startingPosition);
 
     }
     public abstract int Power { get; }
@@ -36,25 +57,16 @@ public abstract class Creature
         Level++;
     }
 
-    public string Go(Direction direction)
+    public void Go(Direction direction)
     {
-        string dir = direction.ToString().ToLower();
-        return $"{Name} goes {dir}.";
+        if (_map == null) return;
+
+        Point nextPoint = _map.Next(_point, direction);
+
+        _map.Move(this, _point, nextPoint);
+        _point = nextPoint;
     }
 
-    public string[] Go(Direction[] directions)
-    {
-        if (directions == null || directions.Length == 0)
-            return new[] { $"{Name} stands still." };
-
-        return directions.Select(d => Go(d)).ToArray();
-    }
-
-    public string[] Go(string input)
-    {
-        Direction[] directions = DirectionParser.Parse(input);
-        return Go(directions);
-    }
 
     public abstract string Greating();
 
@@ -64,7 +76,7 @@ public abstract class Creature
     }
     public static string Slogan() => "creatures are great !!!";
 
-    public abstract string Info {  get; }
+    public abstract string Info { get; }
 
 
 }

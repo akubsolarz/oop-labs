@@ -2,15 +2,15 @@
 
 public static class DirectionParser
 {
-    public static Direction[] Parse(string input)
+    public static List<Direction> Parse(string input)
     {
-        if(String.IsNullOrWhiteSpace(input))
+        if (String.IsNullOrWhiteSpace(input))
         {
-            return Array.Empty<Direction>();
+            return new List<Direction>();
         }
         var directions = new List<Direction>();
 
-        foreach( char c in input.ToUpperInvariant())
+        foreach (char c in input.ToUpperInvariant())
         {
             switch (c)
             {
@@ -21,6 +21,6 @@ public static class DirectionParser
                 default: break;
             }
         }
-        return directions.ToArray();
+        return directions;
     }
 }
