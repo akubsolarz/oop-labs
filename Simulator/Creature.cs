@@ -56,7 +56,7 @@ public abstract class Creature
     {
         Level++;
     }
-
+    public virtual char Symbol => '?';
     public void Go(Direction direction)
     {
         if (_map == null) return;
