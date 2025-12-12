@@ -19,7 +19,7 @@ public class Orc : Creature
             Rage++;
         }
     }
-    public override char Symbol => 'O';
+    public override char MapSymbol => 'O';
     public override int Power => 8 * Level + 2 * Rage;
 
     public Orc(string name, int level = 1, int rage = 1) : base(name, level)

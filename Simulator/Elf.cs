@@ -18,7 +18,7 @@ public class Elf : Creature
             Agility++;
         }
     }
-    public override char Symbol => 'E';
+    public override char MapSymbol => 'E';
     public override int Power => 8 * Level + 2 * Agility;
 
     public Elf(string name, int level = 1, int agility = 1) : base(name, level)

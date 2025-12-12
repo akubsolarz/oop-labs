@@ -2,11 +2,14 @@
 
 namespace Simulator;
 
-public abstract class Creature
+public abstract class Creature : Imapable
 {
     private Map? _map;
 
     private Point _point;
+
+    public Point Position => _point;
+    public Map? Map => _map;
 
     private string _name = "Unknown";
     private int _level = 1;
@@ -22,7 +25,6 @@ public abstract class Creature
 
     }
 
-    public Point Position => _point;
     public void InitMapAndPosition(Map map, Point startingPosition)
     {
         if (map == null)
@@ -56,7 +58,7 @@ public abstract class Creature
     {
         Level++;
     }
-    public virtual char Symbol => '?';
+    public virtual char MapSymbol => '?';
     public void Go(Direction direction)
     {
         if (_map == null) return;

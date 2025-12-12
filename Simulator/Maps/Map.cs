@@ -8,7 +8,7 @@ namespace Simulator.Maps;
 /// </summary>
 public abstract class Map
 {
-    private readonly Dictionary<Point, List<Creature>> _points = new();
+    private readonly Dictionary<Point, List<Imapable>> _points = new();
     public readonly int SizeX;
     public readonly int SizeY;
     private readonly Rectangle ractan;
@@ -53,50 +53,50 @@ public abstract class Map
     /// </summary>
     /// <param name="creature"></param>
     /// <param name="p"></param>
-    public void Add(Creature creature, Point p)
+    public void Add(Imapable mappable, Point p)
     {
         if (!Exist(p))
             throw new ArgumentOutOfRangeException(nameof(p), "Punkt poza mapą.");
 
         if (!_points.TryGetValue(p, out var list))
         {
-            list = new List<Creature>();
+            list = new List<Imapable>();
             _points[p] = list;
         }
-        _points[p].Add(creature);
+        _points[p].Add(mappable);
 
     }
     /// <summary>
     /// Remove Creature
     /// </summary>
     /// <param name="creature"></param>
-    public void Remove(Creature creature, Point p)
+    public void Remove(Imapable mappable, Point p)
     {
         if (_points.TryGetValue(p, out var list))
         {
-            list.Remove(creature);
+            list.Remove(mappable);
             if (list.Count == 0)
                 _points.Remove(p);
         }
     }
 
-    public void Move(Creature creature, Point pointOld, Point pointNew)
+    public void Move(Imapable mappable, Point pointOld, Point pointNew)
     {
-        Remove(creature, pointOld);
-        Add(creature, pointNew);
+        Remove(mappable, pointOld);
+        Add(mappable, pointNew);
     }
     /// <summary>
     /// dokończ
     /// </summary>
     /// <param name="p"></param>
     /// <returns></returns>
-    public List<Creature> At(Point p)
+    public List<Imapable> At(Point p)
     {
         if (_points.TryGetValue(p, out var list))
             return list;
 
-        return new List<Creature>();
+        return new List<Imapable>();
     }
 
-    public List<Creature> At(int x, int y) => At(new Point(x, y));
+    public List<Imapable> At(int x, int y) => At(new Point(x, y));
 }

@@ -12,7 +12,6 @@ public class MapVisualizer
 
     public void Draw()
     {
-        Console.Clear();
 
         int width = _map.SizeX;
         int height = _map.SizeY;
@@ -35,7 +34,7 @@ public class MapVisualizer
 
                 char symbol =
                     creatures.Count == 0 ? ' ' :
-                    creatures.Count == 1 ? creatures[0].Symbol :
+                    creatures.Count == 1 ? creatures[0].MapSymbol :
                     'X';
 
                 Console.Write(symbol);
@@ -50,6 +49,6 @@ public class MapVisualizer
         for (int x = 0; x < width; x++)
             Console.Write(Box.Horizontal);
         Console.Write(Box.BottomRight);
-        Console.WriteLine();
+        Console.WriteLine("\n Press any key for next move...");
     }
 }

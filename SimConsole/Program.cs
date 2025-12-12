@@ -16,7 +16,6 @@ MapVisualizer visualizer = new(map);
 
 // Rysuj początek
 visualizer.Draw();
-Console.WriteLine("Press any key for next move...");
 
 while (!simulation.Finished)
 {
