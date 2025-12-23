@@ -31,9 +31,7 @@ public class Elf : Creature
     public override string Greating() => $"Hi, I'm {Name}, my level is {Level}, my agility is {Agility}";
 
     public override string ToString()
-    {
-        return $"Hi, I'm {Name}, my level is {Level}, my agility is {Agility}";
-    }
+    => $"{GetType().Name.ToUpper()}: {Info}";
 
     public override string Info => $" {Name} [{Level}][{Agility}]";
 }

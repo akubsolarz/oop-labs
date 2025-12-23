@@ -31,8 +31,7 @@ public class Orc : Creature
     public override string  Greating() => $"Hi, I'm {Name}, my level is {Level},  my rage is {Rage}";
 
     public override string ToString()
-    {
-        return $"Hi, I'm {Name}, my level is {Level}, my rage is {Rage}";
-    }
+     => $"{GetType().Name.ToUpper()}: {Info}";
+    
     public override string Info => $"{Name} [{Level}][{Rage}]";
 }

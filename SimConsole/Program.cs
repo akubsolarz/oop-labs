@@ -5,6 +5,7 @@ using Simulator.Maps;
 Console.WriteLine("Wybierz symulację:");
 Console.WriteLine("1) Sim1 ");
 Console.WriteLine("2) Sim2 ");
+Console.WriteLine("3) Sim3 ");
 
 var key = Console.ReadKey(true).KeyChar;
 Console.WriteLine();
@@ -16,6 +17,9 @@ switch (key)
         break;
     case '2':
         Sim2();
+        break;
+    case '3':
+        Sim3();
         break;
     default:
         Console.WriteLine("zły wybór");
@@ -92,4 +96,56 @@ static void Sim2()
     }
 
     Console.WriteLine("Simulation finished!");
+}
+static void Sim3()
+{
+    Map map = new SmallTorusMap(8, 6);
+
+    var creatures = new List<Imapable>
+    {
+        new Elf("Elandor"),
+        new Orc("Gorbag"),
+        new Animals { Description = "Rabbits", Size = 30 },
+        new Birds("orły", 10, canFly: true),
+        new Birds("strusie", 10, canFly: false),
+    };
+
+    var points = new List<Point>
+    {
+        new Point(0, 0),
+        new Point(7, 5),
+        new Point(1, 1),
+        new Point(4, 2),
+        new Point(6, 4),
+    };
+
+    string moves = "ulrldduuulllurrruddd"; 
+
+    
+    var sim = new Simulation(map, creatures, points, moves);
+    var log = new SimulationLog(sim);
+    var visualizer = new LogVisualizer(log);
+
+    // ruchy strusie
+    int[] moveset_S = { 5, 10, 15, 20 };
+    // ruchy orłów
+    int[] moveset_O = { 4, 9, 14, 19 };
+    // ruchy orca
+    int[] moveset_OR = { 2, 7, 12, 17 };
+    // ruchy elfa
+    int[] moveset_E = { 1, 6, 11, 16 };
+    // ruchy królików
+    int[] moveset_R = { 3, 8, 13, 18 };
+
+
+
+    foreach (int t in moveset_S)
+    {
+        
+        visualizer.Draw(t);
+
+        Console.WriteLine();
+        Console.WriteLine("Press any key to show next move...");
+        Console.ReadKey(true);
+    }
 }
