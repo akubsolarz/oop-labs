@@ -11,7 +11,7 @@ public class Simulation
     /// <summary>
     /// Creatures moving on the map.
     /// </summary>
-    public List<Creature> Creatures { get; }
+    public List<Imapable> Creatures { get; }
     /// <summary>
     /// Starting positions of creatures.
     /// </summary>
@@ -37,7 +37,7 @@ public class Simulation
     /// <summary>
     /// Creature which will be moving current turn.
     /// </summary>
-    public Creature CurrentCreature => Creatures[turnIndex % Creatures.Count];
+    public Imapable CurrentCreature => Creatures[turnIndex % Creatures.Count];
     /// <summary>
     /// Lowercase name of direction which will be used in current turn.
     /// </summary>
@@ -50,7 +50,7 @@ public class Simulation
     /// if number of creatures differs from
     /// number of starting positions.
     /// </summary>
-    public Simulation(Map map, List<Creature> creatures, List<Point> positions, string moves)
+    public Simulation(Map map, List<Imapable> creatures, List<Point> positions, string moves)
     {
         if (creatures == null || creatures.Count == 0)
             throw new ArgumentException("Creature list is empty.");
@@ -79,7 +79,7 @@ public class Simulation
         if (Finished)
             throw new InvalidOperationException("Simulation finished.");
 
-        Creature creature = CurrentCreature;
+        Imapable creature = CurrentCreature;
 
         List<Direction> parsed = DirectionParser.Parse(CurrentMoveName);
 

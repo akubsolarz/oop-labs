@@ -8,4 +8,5 @@ public interface Imapable
 
     void Go(Direction direction);
     void InitMapAndPosition(Map map, Point startingPosition);
+    string ToString();
 }

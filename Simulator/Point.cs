@@ -20,13 +20,13 @@ public readonly struct Point
         => direction switch
         {
 
-            Direction.Up => new Point(X + 1, Y + 1), //up right
+            Direction.Up => new Point(X + 1, Y - 1), //up right
 
-            Direction.Right => new Point(X + 1, Y - 1), // down righgt
+            Direction.Right => new Point(X + 1, Y + 1), // down righgt
 
-            Direction.Down => new Point(X - 1, Y - 1), // down left
+            Direction.Down => new Point(X - 1, Y + 1), // down left
 
-            Direction.Left => new Point(X - 1, Y + 1), // up left
+            Direction.Left => new Point(X - 1, Y - 1), // up left
 
             _ => this
         };
