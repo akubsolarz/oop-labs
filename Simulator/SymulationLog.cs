@@ -33,12 +33,14 @@ public class SimulationLog
         {
             string mappableText = _simulation.CurrentCreature.ToString();
             string moveText = _simulation.CurrentMoveName;
+            Point before = _simulation.CurrentCreature.Position;
+            int displayY = (_simulation.Map.SizeY - 1) - before.Y;
 
             _simulation.Turn();
 
             TurnLogs.Add(new TurnLog
             {
-                Mappable = mappableText,
+                Mappable = $"{mappableText} (pos: ({before.X}, {displayY}))",
                 Move = moveText,
                 Symbols = SnapshotSymbols(_simulation.Map)
             });

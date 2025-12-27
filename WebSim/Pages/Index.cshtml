@@ -1,0 +1,56 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Symulacja";
+}
+
+<nav class="controls">
+
+    <a class="btn"
+       href="?Turn=@(Math.Max(0, Model.Turn - 1))">Prev</a>
+
+    <h2 class="title">
+        Symulacja - tura @Model.Turn / @(Model.Log.TurnLogs.Count - 1)
+    </h2>
+
+    <a class="btn"
+       href="?Turn=@(Math.Min(Model.Log.TurnLogs.Count - 1, Model.Turn + 1))">Next</a>
+</nav>
+
+<table class="map-grid">
+    @for (int y = 0; y < Model.Log.SizeY; y++)
+    {
+        <tr>
+            
+            <th>@((Model.Log.SizeY - 1) - y)</th>
+
+            @for (int x = 0; x < Model.Log.SizeX; x++)
+            {
+                var p = new Simulator.Point(x, y);
+                var c = Model.Current.Symbols.TryGetValue(p, out var s) ? s : ' ';
+                <td class="cell symbol-@c"></td>
+            }
+        </tr>
+    }
+    <tr class="tr-x">
+        <th></th>
+        @for (int x = 0; x < Model.Log.SizeX; x++)
+        {
+            <th>@x</th>
+        }
+    </tr>
+</table>
+
+<div class="info">
+    @{
+        string move = Model.Current.Move switch
+        {
+            "u" => "up",
+            "d" => "down",
+            "l" => "left",
+            "r" => "right",
+            _ => Model.Current.Move
+        };
+    }
+    <p><span class="infou">Moved: </span>@Model.Current.Mappable <span class="infou">Move: </span>@move</p>
+</div>

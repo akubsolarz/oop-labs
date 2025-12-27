@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SimWeb</title>
+    <link rel="stylesheet" href="~/css/site.css"
+          asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <h1 class="simweblay">SimWeb</h1>
+        <nav class="layoutnav">
+            <a asp-area="" asp-page="/Privacy">Informacje</a>
+            <a asp-area="" asp-page="/Index">Symulacja</a>
+        </nav>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+    <footer>Jakub Solarz</footer>
+</body>
+</html>
