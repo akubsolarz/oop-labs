@@ -1,4 +1,6 @@
-﻿namespace Simulator;
+﻿using System.Text.Json.Serialization;
+
+namespace Simulator;
 
 
 public class Orc : Creature
@@ -19,6 +21,7 @@ public class Orc : Creature
             Rage++;
         }
     }
+    [JsonIgnore]
     public override char MapSymbol => 'O';
 
 
@@ -36,6 +39,6 @@ public class Orc : Creature
 
     public override string ToString()
      => $"{GetType().Name.ToUpper()}: {Info}";
-
+    [JsonIgnore]
     public override string Info => $"{Name} [{Level}][{Rage}]";
 }

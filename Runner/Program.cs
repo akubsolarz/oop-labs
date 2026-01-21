@@ -1,4 +1,7 @@
 ﻿using Simulator;
+using Simulator.Maps;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Runner;
 
@@ -6,35 +9,25 @@ internal class Program
 {
     static void Main(string[] args)
     {
+        var options = new JsonSerializerOptions { WriteIndented = true };
 
-        Console.WriteLine("Starting Simulator!\n");
+        List<Imapable> mapables = [
+            new Orc("Gorbag", 3, 5),
+            new Elf("Elandor", 2, 7),
+            new Animals { Description = "Rasbbits", Size = 10 },
+            new Birds { Description = "Eagles", Size = 15 },
+            new Birds { Description = "Emu", Size = 8, CanFly = false }
+        ];
 
-        List<Creature> creatures =
+        string json = JsonSerializer.Serialize(mapables, options);
+        Console.WriteLine("\nJSON:");
+        Console.WriteLine(json);
 
-[
-     new Elf("Elrond", 5, 7),
-             new Orc("Gorgul", 4, 6),
-             new Elf("Legolas", 6, 8),
-             new Orc("Thrall", 5, 7),
-             new Elf("Tauriel", 4, 5),
-             new Orc("Azog", 6, 9)
-];
-
-        creatures.ForEach(c => Console.WriteLine($"{c,-20} power: {c.Power}"));
-
-        Console.WriteLine("\nSort by power\n");
-
-        creatures.Sort((c1, c2) => c2.Power - c1.Power);
-        creatures.ForEach(c => Console.WriteLine($"{c,-20} power: {c.Power}"));
-
-
-        Console.WriteLine("\nSort by name\n");
-
-        creatures.Sort((c1, c2) => c1.Name.CompareTo(c2.Name));
-        creatures.ForEach(c => Console.WriteLine($"{c,-20} power: {c.Power}"));
-
+        List<Imapable> deserialized =
+            JsonSerializer.Deserialize<List<Imapable>>(json, options)!;
 
     }
 
 }
+
 

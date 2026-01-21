@@ -1,4 +1,6 @@
-﻿namespace Simulator;
+﻿using System.Text.Json.Serialization;
+
+namespace Simulator;
 
 public class Elf : Creature
 {
@@ -33,6 +35,6 @@ public class Elf : Creature
 
     public override string ToString()
     => $"{GetType().Name.ToUpper()}: {Info}";
-
+    [JsonIgnore]
     public override string Info => $"{Name} [{Level}][{Agility}]";
 }

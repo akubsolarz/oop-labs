@@ -1,7 +1,11 @@
 ﻿using Simulator.Maps;
+using System.Text.Json.Serialization;
 
 namespace Simulator;
 
+[JsonPolymorphic(TypeDiscriminatorPropertyName = "Type")]
+[JsonDerivedType(typeof(Elf), nameof(Elf))]
+[JsonDerivedType(typeof(Orc), nameof(Orc))]
 public abstract class Creature : Imapable
 {
     private Map? _map;
@@ -38,8 +42,11 @@ public abstract class Creature : Imapable
         map.Add(this, startingPosition);
 
     }
+
+    [JsonIgnore]
     public Func<int> CalculatePower { get; set; } = () => 0;
-    public int Power => CalculatePower();
+    [JsonIgnore]
+    protected int Power => CalculatePower();
 
 
     public Creature(string name)
