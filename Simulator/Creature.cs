@@ -38,7 +38,8 @@ public abstract class Creature : Imapable
         map.Add(this, startingPosition);
 
     }
-    public abstract int Power { get; }
+    public Func<int> CalculatePower { get; set; } = () => 0;
+    public int Power => CalculatePower();
 
 
     public Creature(string name)

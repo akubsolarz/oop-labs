@@ -19,19 +19,20 @@ public class Elf : Creature
         }
     }
     public override char MapSymbol => 'E';
-    public override int Power => 8 * Level + 2 * Agility;
+
 
     public Elf(string name, int level = 1, int agility = 1) : base(name, level)
     {
         Agility = agility;
+        CalculatePower = () => 8 * Level + 2 * Agility;
     }
 
-    public Elf() { }
+    public Elf() : this("Elf") { }
 
     public override string Greating() => $"Hi, I'm {Name}, my level is {Level}, my agility is {Agility}";
 
     public override string ToString()
     => $"{GetType().Name.ToUpper()}: {Info}";
 
-    public override string Info => $" {Name} [{Level}][{Agility}]";
+    public override string Info => $"{Name} [{Level}][{Agility}]";
 }

@@ -13,25 +13,29 @@ public class Orc : Creature
     public void Hunt()
     {
         _huntcount++;
-        
+
         if (_huntcount % 2 == 0)
         {
             Rage++;
         }
     }
     public override char MapSymbol => 'O';
-    public override int Power => 8 * Level + 2 * Rage;
+
 
     public Orc(string name, int level = 1, int rage = 1) : base(name, level)
     {
         Rage = rage;
+        CalculatePower = () => 8 * Level + 2 * Rage;
     }
-    public Orc() { }
+    public Orc()
+    {
+        CalculatePower = () => 8 * Level + 2 * Rage;
+    }
 
-    public override string  Greating() => $"Hi, I'm {Name}, my level is {Level},  my rage is {Rage}";
+    public override string Greating() => $"Hi, I'm {Name}, my level is {Level},  my rage is {Rage}";
 
     public override string ToString()
      => $"{GetType().Name.ToUpper()}: {Info}";
-    
+
     public override string Info => $"{Name} [{Level}][{Rage}]";
 }
