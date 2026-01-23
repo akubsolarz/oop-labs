@@ -53,4 +53,8 @@
         };
     }
     <p><span class="infou">Moved: </span>@Model.Current.Mappable <span class="infou">Move: </span>@move</p>
+    @if (!string.IsNullOrWhiteSpace(Model.Current.FightMessage))
+    {
+        <p><span class="infou">Fight: </span>@Model.Current.FightMessage</p>
+    }
 </div>

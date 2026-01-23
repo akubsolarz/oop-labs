@@ -12,6 +12,7 @@ public class Orc : Creature
         get => _rage;
         set => _rage = Validator.Limiter(value, 0, 10);
     }
+    public void WinFight() => Rage++;
     public void Hunt()
     {
         _huntcount++;

@@ -11,6 +11,7 @@ public class Elf : Creature
         get => _agility;
         private set => _agility = Validator.Limiter(value, 0, 10);
     }
+    public void WinFight() => Agility++;
     public void Sing()
     {
         _singcount++;

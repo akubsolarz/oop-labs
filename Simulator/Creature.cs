@@ -47,8 +47,7 @@ public abstract class Creature : Imapable
     public Func<int> CalculatePower { get; set; } = () => 0;
     [JsonIgnore]
     protected int Power => CalculatePower();
-
-
+    
     public Creature(string name)
     {
         Name = name;
@@ -88,6 +87,20 @@ public abstract class Creature : Imapable
 
     public abstract string Info { get; }
 
+    public bool WinsAgainst(Creature other)
+    {
+        return Power > other.Power;
+    }
+    private int _winsSinceLevelUp = 0;
+    public void RegisterWin()
+    {
+        _winsSinceLevelUp++;
 
+        if (_winsSinceLevelUp >= 3)
+        {
+            Upgrade();
+            _winsSinceLevelUp = 0;
+        }
+    }
 }
 

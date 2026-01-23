@@ -35,7 +35,7 @@ public class IndexModel : PageModel
             new(6, 4),
         };
 
-        string moves = "ulrldduuulllurrruddd";
+        string moves = "rlrlrlrlrlrlrlrlrlrllduuuudrll";
 
         var sim = new Simulation(map, creatures, points, moves);
         Log = new SimulationLog(sim);

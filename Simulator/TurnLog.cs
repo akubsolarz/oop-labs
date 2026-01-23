@@ -20,4 +20,5 @@ public class TurnLog
     /// If many objects on one cell => 'X'.
     /// </summary>
     public required Dictionary<Point, char> Symbols { get; init; }
+    public string? FightMessage { get; init; }
 }

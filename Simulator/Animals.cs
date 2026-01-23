@@ -22,7 +22,6 @@ public class Animals : Imapable
     public Point Position => _point;
     public Map? Map => _map;
 
-    
     public virtual char MapSymbol => 'A';
 
     public void InitMapAndPosition(Map map, Point startingPosition)
@@ -55,4 +54,9 @@ public class Animals : Imapable
 
     public override string ToString()
         => $"{GetType().Name.ToUpper()}: {Info}";
+    public void LoseFight()
+    {
+        if (Size > 0)
+            Size--;
+    }
 }

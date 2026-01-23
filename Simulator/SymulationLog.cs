@@ -26,7 +26,8 @@ public class SimulationLog
             //ruch 0
             Mappable = "Start Symulacji",
             Move = "Start Symulacji",
-            Symbols = SnapshotSymbols(_simulation.Map)
+            Symbols = SnapshotSymbols(_simulation.Map),
+            FightMessage = _simulation.LastFightMessage
         });
 
         while (!_simulation.Finished)
@@ -42,7 +43,8 @@ public class SimulationLog
             {
                 Mappable = $"{mappableText} (pos: ({before.X}, {displayY}))",
                 Move = moveText,
-                Symbols = SnapshotSymbols(_simulation.Map)
+                Symbols = SnapshotSymbols(_simulation.Map),
+                FightMessage = _simulation.LastFightMessage
             });
         }
     }
